@@ -23,7 +23,8 @@ public class FileUtil {
         CharBuffer charBuffer = CharBuffer.allocate(1024);
         Charset charset = Charset.forName("GBK");
         CharsetDecoder charsetDecoder =  charset.newDecoder();
-        if(!file.exists() || !file.isFile()){//判断文件是否存在
+        //判断文件是否存在
+        if(!file.exists() || !file.isFile()){
             return "文件不存在";
         }
         try {
@@ -91,5 +92,36 @@ public class FileUtil {
         }
 
         return b;
+    }
+
+    public void byteToFile(byte[] nr,String fileName){
+        InputStream in = null;
+        OutputStream out = null;
+        byte[] buffer = new  byte[1024];
+        int length = 0;
+        try {
+            in = new BufferedInputStream(new ByteArrayInputStream(nr));
+            out = new BufferedOutputStream(new FileOutputStream(new File(fileName)));
+            while ((length = in.read(buffer)) != -1){
+                out.write(buffer, 0,length );
+            }
+        }catch (Exception e){
+            e.getStackTrace();
+        }finally {
+            if(out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

@@ -24,6 +24,15 @@
 </head>
 <body>
     <h1>Hello World(你好世界郭亮1) !!!</h1>
+
+    <input class="form-control" placeholder="姓名" id="name1" name="name1">
+    <input id="lefile" type="file" style="display: none;"/><!---->
+    <div class="input-append">
+        <input id="photoCover" class="input-large" type="text" placeholder="FileUpload" />
+        <a class="btn btn-primary" onclick="selectFile();" >浏览</a>
+        <a class="btn btn-primary" onclick="uploadFile();" >上传</a>
+    </div>
+
     <!--<button class="btn btn-default">123</button>
     <button class="btn btn-default">确定</button>
     <button class="btn btn-primary">确定</button>
@@ -64,6 +73,8 @@
     <br>
     <br>
     <br>
+
+    <button class="btn btn-primary" onclick="jump()">跳转</button>
 
     <button class="btn btn-primary" onclick="startAllJob()">startAllJob</button>
 

@@ -3,6 +3,7 @@ package com.luo.init;
 import com.luo.job.Job1;
 import com.luo.job.Job2;
 import com.luo.serviceImpl.JobServiceImpl;
+import com.luo.util.RedisUtil;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ public class JobInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         logger.info("Job Init");
         JobKey jobKey = new JobKey("job1","job");
         JobKey jobKey2 = new JobKey("job2","job2");

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.luo.entity.Student;
 import com.luo.serviceImpl.StudentService;
 import com.luo.util.StringUtil;
+import com.luo.util.TestUtil;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,7 @@ public class StudentController {
         logger2.debug("show all students");
         logger2.error("show all students");
         //logger1.info(" Show All Students");
+        TestUtil.testUse();
         List<Student> students = studentService.getAllStudent();
         model.addAttribute("students",students);
         return "hello/hello";
@@ -95,7 +97,7 @@ public class StudentController {
      * @param student
      * @return
      */
-    @RequestMapping(value = "/saveStudent",method = RequestMethod.POST)
+    @RequestMapping(value = "/saveStudent")
     @ResponseBody
     public String saveStudent(Student student){
         String rtn = studentService.saveStudent(student);
@@ -126,5 +128,10 @@ public class StudentController {
     @RequestMapping(value = "/exportJxl",method = RequestMethod.GET)
     public void exportJxl(HttpServletResponse response){
         studentService.exportStudentJxl(response);
+    }
+
+    @RequestMapping(value = "/jump",method = RequestMethod.POST)
+    public String jump(HttpServletResponse response){
+        return "clazz/ztreeTest.html";
     }
 }

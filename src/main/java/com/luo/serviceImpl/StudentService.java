@@ -66,7 +66,26 @@ public class StudentService {
     @Transactional
     public String saveStudent(Student student){
         try {
-            Student s = studentDao.save(student);
+            Student s1 = new Student();
+            s1.setId(22);
+            s1.setName("郭亮");
+            Student s = studentDao.save(s1);
+            saveStudent1();
+            return "succ";
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException("保存学生信息错误");
+        }
+    }
+    public String saveStudent1(){
+        try {
+            Student s2 = new Student();
+            s2.setId(21);
+            s2.setName("周华");
+            Student s1 = studentDao.save(s2);
+            if(1!=1) {
+                throw new RuntimeException("保存学生信息错误");
+            }
             return "succ";
         }catch (Exception e){
             System.out.println(e.getMessage());

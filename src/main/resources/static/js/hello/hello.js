@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   tableInit();
+   //tableInit();
 });
 
 function tableInit() {
@@ -198,6 +198,60 @@ testThreadPool = function () {
         success: function (data) {
             if("succ" == data){
                 alert("保存成功");
+            }else{
+                alert("保存失败");
+            }
+        },
+        error: function (err) {
+            alert("保存错误");
+        }
+    })
+}
+
+function selectFile() {
+    $('input[id=lefile]').click();
+    var file = $('#lefile').val();
+    file = file.substring(file.lastIndexOf("\\")+1,file.length);
+    $('#photoCover').val(file);
+}
+
+function uploadFile(){
+    var name1 = $("#name1").val();
+    var input = document.getElementById('lefile');
+    var data = new FormData();
+    data.append('file', input.files[0]);
+    data.append('name1', name1);
+    $.ajax({
+        url: "/file/upload",
+        type: "POST",
+        data: data,
+        sync: false,
+        contentType: false, // 注意这里应设为false
+        processData: false,
+        dataTypes: "text",
+        success: function (data) {
+            if("succ" == data){
+                alert("保存成功");
+            }else{
+                alert("保存失败");
+            }
+        },
+        error: function (err) {
+            alert("保存错误");
+        }
+    })
+}
+
+jump = function () {
+    $.ajax({
+        url: "/student/jump",
+        type: "POST",
+        data: {},
+        sync: false,
+        dataTypes: "text",
+        success: function (data) {
+            if("succ" == data){
+                window.location.href= "/clazz/ztreeTest.html"
             }else{
                 alert("保存失败");
             }
